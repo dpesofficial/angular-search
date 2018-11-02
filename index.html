@@ -10,37 +10,48 @@
 </head>
 <body>
     
-    <div class="angular-app container" id="notebooks" ng-app="notebooks" ng-controller="NotebookListCtrl">
+    <div class="angular-app container-fluid" id="app" ng-app="app" ng-controller="NotebookListCtrl">
 
         <div class="items-search">
-             <span>Number of Items: {{notebooks.length}}</span>
-
-             <div class="input-group mb-3">
-                <input type="text" id="query" ng-model="query" class="form-control" placeholder="Search Query..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2">Search</span>
+            <div class="container">
+                <div class="row">
+                    <div class="input-group col-lg-9">
+                       <input type="text" id="query" ng-model="query" class="form-control" placeholder="Search Query..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" id="sort-filter" ng-model="orderList">
+                            <option value="keyword">By name</option>
+                            <option value="-result_size">Newest</option>
+                            <option value="result_size">Oldest</option>
+                         </select>
+                    </div>
                 </div>
+           
             </div>
 
-            <select class="form-control" ng-model="orderList">
-            <option value="keyword">By name</option>
-            <option value="-result_size">Newest</option>
-            <option value="result_size">Oldest</option>
-        </select>
+           
         </div>
 
-        <div class="items-list-wrap">
-            <div class="row item-wrap" ng-repeat="notebook in notebooks | filter:query | orderBy: orderList">
+        <div class="items-list-wrap container">
+            <span>Number of Items: {{app.length}}</span>
+            <div class="row item-wrap" ng-repeat="notebook in app | filter:query | orderBy: orderList">
                     <div class="col-lg-4 item-image">
-                           <img class="card-img-top" src="image.png" alt="Card image cap">             
+                           <img class="card-img-top" ng-src="{{notebook.image}}" alt="Card image cap">             
                     </div>
-                    <div class="col-lg-6 item-desc">
-                             name: {{notebook.keyword}}<br />
+                    <div class="col-lg-5 item-desc">
+                             <p class="item-title">
+                                {{notebook.keyword}}<br />
+                             </p> 
                             procesor: {{notebook.result_size}}<br />
                             <div class="right top">{{notebook.furnishing}}</div>
                     </div>
-                    <div class="col-lg-2 item-details">
-                        
+                    <div class="col-lg-3 item-details">
+                        DETAILS
+                        <ul>
+                            <li><img src="icon.svg" alt=""> {{notebook.furnishing}} </li>
+                            <li><img src="star.svg" alt=""> {{notebook.star}} </li>
+                        </ul>
+                     
                     </div>
 
 
@@ -53,24 +64,37 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> 
     <script>
-        var notebooks = angular.module('notebooks', []);
+        var app = angular.module('app', []);
 
-            notebooks.controller('NotebookListCtrl', function ($scope) {
-                $scope.notebooks = [
+            app.controller('NotebookListCtrl', function ($scope) {
+                $scope.app = [
                     {
-                        "keyword": "Balcony",
+                        "keyword": "Spacious Family Apartment in Prime Queenstown MRT Location",
                          "result_size": 1,
-                         "furnishing": "Furnished"
+                         "furnishing": "Furnished",
+                         "image": "assets/img/one.jpg",
+                         "star": "Pool, BBQ Area"
                     },
                     {
-                         "keyword": "Orchard",
+                         "keyword": "The Residences at W Singapore Sentosa Cove",
                          "result_size": 5,
-                         "furnishing": "Fully furnished"
+                         "furnishing": "Fully furnished",
+                         "image": "assets/img/two.jpg",
+                         "star": "Pool"
                     },
                     {
-                         "keyword": "Apple",
+                         "keyword": "A Residences at W Singapore Sentosa Cove",
                          "result_size": 6,
-                         "furnishing": "Fully furnished"
+                         "furnishing": "Fully furnished",
+                         "image": "assets/img/three.jpg",
+                         "star": "Pool, BBQ Area"
+                    },
+                    {
+                        "keyword": "Fully Furnished 2 Bedroom Condo Unit @ The Bayshore",
+                         "result_size": 3,
+                         "furnishing": "Furnished",
+                         "image": "assets/img/two.jpg",
+                         "star": "BBQ Area"
                     }
                 ];
                 $scope.orderList = "keyword";
