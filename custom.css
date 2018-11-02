@@ -46,6 +46,7 @@
 .item-title {
     font-size: 22px;
     line-height: 1.4;
+    margin-bottom: 8px;
 }
 .item-image {
     padding-left: 0;
@@ -69,4 +70,16 @@
 .item-image img {
     height: 100%;
     object-fit: cover;
+}
+.price {
+    font-size: 20px;
+    padding-top: 15px;
+    display: inline-block;
+    font-weight: 600;
+    color: #000000c9;
+}
+@media(max-width:768px) {
+    .items-list-wrap {
+        padding: 0 30px;
+    }
 }

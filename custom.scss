@@ -36,6 +36,13 @@
             line-height: 1.4;
         }
     }
+    .price {
+        font-size: 20px;
+        padding-top: 15px;
+        display: inline-block;
+        font-weight: 600;
+        color: #000000c9;
+    }
 }
 .items-list-wrap>span {
     padding-top: 15px;
@@ -55,4 +62,9 @@
     font-size: 12px;
     background-color: #fff;
     font-size: 13px;
+}
+@media(max-width:768px){
+    .items-list-wrap {
+        padding: 0 30px;
+    }
 }
