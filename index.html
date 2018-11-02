@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <div class="angular-app container-fluid" id="app" ng-app="app" ng-controller="NotebookListCtrl">
+    <div class="angular-app container-fluid" id="app" ng-app="app" ng-controller="ApplicationListCtrl">
 
         <div class="items-search">
             <div class="container">
@@ -34,22 +34,22 @@
 
         <div class="items-list-wrap container">
             <span>List Of Items Displayed: {{ (app | filter: query).length }}</span>
-            <div class="row item-wrap" ng-repeat="notebook in app | filter:query | orderBy: orderList">
+            <div class="row item-wrap" ng-repeat="Application in app | filter:query | orderBy: orderList">
                     <div class="col-lg-4 item-image">
-                           <img class="card-img-top" ng-src="{{notebook.image}}" alt="Card image cap">             
+                           <img class="card-img-top" ng-src="{{Application.image}}" alt="Card image cap">             
                     </div>
 
                     <div class="col-lg-5 item-desc">
-                             <p class="item-title"> {{notebook.keyword}}<br /> </p> 
-                             <i>procesor: {{notebook.result_size}}</i> <br />
-                            <div class="right top">{{notebook.furnishing}}</div>
-                            <span class="price">{{notebook.price}}/Month</span>
+                             <p class="item-title"> {{Application.keyword}}<br /> </p> 
+                             <i>procesor: {{Application.result_size}}</i> <br />
+                            <div class="right top">{{Application.furnishing}}</div>
+                            <span class="price">{{Application.price}}/Month</span>
                     </div>
                     <div class="col-lg-3 item-details">
                         DETAILS
                         <ul>
-                            <li><img src="assets/img/icon.svg" alt=""> {{notebook.furnishing}} </li>
-                            <li><img src="assets/img/star.svg" alt=""> {{notebook.star}} </li>
+                            <li><img src="assets/img/icon.svg" alt=""> {{Application.furnishing}} </li>
+                            <li><img src="assets/img/star.svg" alt=""> {{Application.star}} </li>
                         </ul>
                      
                     </div>
@@ -66,7 +66,7 @@
     <script>
         var app = angular.module('app', []);
 
-            app.controller('NotebookListCtrl', function ($scope) {
+            app.controller('ApplicationListCtrl', function ($scope) {
                 $scope.app = [
                     {
                         "keyword": "Spacious Family Apartment in Prime Queenstown MRT Location",
